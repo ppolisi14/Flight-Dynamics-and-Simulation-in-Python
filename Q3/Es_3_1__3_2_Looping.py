@@ -4,7 +4,7 @@ Created on Thu Jan 11 21:33:48 2024
 
 Esercizi 3.1 e 3.2: Cinematica dell'evoluzione di looping
 
-@author: ppolisi95
+@author: ppolisi
 """
 
 import conversioni as conv
@@ -30,16 +30,17 @@ z0 = -h0
 
 #Definizione del valore qmax e dei punti su cui poi applicare
 #un'interpolante cubica. Analogamente per la velocità u.
-q_max = conv.convangvel(55,'deg/s','rad/s')  #rad/s
+q_max = np.radians(55)  #rad/s
 
 tq_points = np.arange(0,1.001,0.075)*t_fin #14 istanti t
 q_points = np.array([0, 0.2*q_max, 0.6*q_max, q_max, q_max,
-                      q_max, q_max, q_max, q_max, 0.465*q_max, 0*q_max,
-                      0*q_max, 0*q_max, 0])
+                      q_max, q_max, q_max, q_max, 0.465*q_max, 0,
+                      0, 0, 0])
 #     #si è costruita con un processo trial and error
 
 tu_points = np.array([0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7,0.8, 1])*t_fin
-u_points = np.array([u0, 0.95*u0, 0.9*u0, 0.86*u0, 0.82*u0,0.78*u0, 0.76*u0, 0.75*u0, 0.75*u0, 0.75*u0])
+u_points = np.array([u0, 0.95*u0, 0.9*u0, 0.86*u0, 0.82*u0,0.78*u0, 0.76*u0, 
+                     0.75*u0, 0.75*u0, 0.75*u0])
 
 # Definizione della funzione q(t) con interpolazione pchip
 q = lambda t: PchipInterpolator(tq_points, q_points)(t)
