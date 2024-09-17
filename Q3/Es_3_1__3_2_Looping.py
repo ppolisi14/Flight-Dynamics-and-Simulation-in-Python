@@ -16,7 +16,10 @@ import matplotlib.pyplot as plt
 # Chiudi tutte le figure precedenti
 plt.close('all')
 # Configura la modalità di visualizzazione dei plot in una finestra separata
-plt.switch_backend('Qt5Agg')
+#plt.switch_backend('Qt5Agg')
+
+#Per salvare le figure in formato jpeg mettere flag salvare_figura = True
+salvare_figura = False
 
 #Dati
 t_fin = 12  #tempo finale della simulazione
@@ -79,7 +82,8 @@ plt.ylim([-20, 80])
 plt.show()
 
 # Salva la figura come JPEG
-plt.savefig('angular_velocity_plot.jpg', dpi=300, bbox_inches='tight')
+if salvare_figura:
+    plt.savefig('angular_velocity_plot.jpg', dpi=300, bbox_inches='tight')
 
 plt.figure()
 plt.plot(v_time, u(v_time), label='u(t)', linewidth=1.5)
@@ -92,7 +96,8 @@ plt.legend()
 plt.show()
 
 # Salva la figura come JPEG
-plt.savefig('velocity_plot.jpg', dpi=300, bbox_inches='tight')
+if salvare_figura:
+    plt.savefig('velocity_plot.jpg', dpi=300, bbox_inches='tight')
 
 # Condizioni iniziali per gli angoli di Eulero
 psi0, theta0, phi0 = 0, 0, 0
@@ -132,7 +137,8 @@ plt.xlim([0, t_fin])
 plt.show()
 
 # Salva la figura come JPEG
-plt.savefig('quaternion_plot.jpg', dpi=300, bbox_inches='tight')
+if salvare_figura:
+    plt.savefig('quaternion_plot.jpg', dpi=300, bbox_inches='tight')
 
 # Ricavare gli angoli di Eulero
 r = Rotation.from_quat(np.column_stack((q1, q2, q3, q0)))
@@ -151,7 +157,8 @@ plt.axis([0, t_fin, -200, 200])
 plt.show()
 
 # Salva la figura come JPEG
-plt.savefig('euler_angles_plot.jpg', dpi=300, bbox_inches='tight')
+if salvare_figura:
+    plt.savefig('euler_angles_plot.jpg', dpi=300, bbox_inches='tight')
 
 # Risoluzione dell'ODE per la posizione
 # Funzione per l'ODE della posizione
@@ -180,4 +187,5 @@ plt.axis([0, t_fin, -500, 500])
 plt.show()
 
 # Salva la figura come JPEG
-plt.savefig('position_plot.jpg', dpi=300, bbox_inches='tight')
+if salvare_figura:
+    plt.savefig('position_plot.jpg', dpi=300, bbox_inches='tight')
